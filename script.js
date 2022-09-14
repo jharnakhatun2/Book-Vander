@@ -92,7 +92,7 @@ const createCard = (book) => {
   div.classList.add("card");
 
   let overview = book.overview;
-  
+  getCartItems
   
   div.innerHTML = `
   <div class="image-container">
@@ -102,7 +102,7 @@ const createCard = (book) => {
     />
     <div class="button-container">
       <button onclick="addToWishlist('${book.id}')" class="button"><i class="fa-solid fa-heart"></i></button>
-      <button onclick="AddToCart" class="button">Add To Cart</button>
+      <button onclick="addToCart('${book.id}')" class="button">Add To Cart</button>
     </div>
   </div>
   <div class="info-container">
@@ -131,20 +131,24 @@ const addToWishlist = (id) => {
 
 const displayCart = () => {
   const cart = getCartItems();
-  console.log(cart);
+  
 
   cart.forEach((book) => {
     const div = createCard(book);
-    document.getElementById("cart").appendChild(div);
+    const cartContainer = document.getElementById("cart")
+    cartContainer.innerHTML = '';
+    cartContainer.appendChild(div);
   });
 };
 
 const displayWishlist = () => {
   const wishlist = getWishlistItems();
-  console.log(wishlist);
-
-  bookList.forEach((book) => {
+  
+  
+  wishlist.forEach((book) => {
     const div = createCard(book);
-    document.getElementById("wishlist").appendChild(div);
+    const wishlistDiv = document.getElementById("wishlist");
+    wishlistDiv.innerHTML = '';
+    wishlistDiv.appendChild(div);
   });
 };
